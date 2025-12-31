@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/favicon.ico" />
+  <title>Flappy Bird Game</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- MediaPipe -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin></script>
+
+  <!-- debug video element (you can remove this tag and let script create it) -->
+  <video id="input_video" autoplay playsinline class="debug-video"></video>
+
+  <!-- main script -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="background"></div>
+
+  <!-- Bird -->
+  <img src="images/Bird.png" alt="bird-img" class="bird" id="bird-1">
+
+  <!-- Message box -->
+  <div class="message">
+    Enter To Start Game
+    <p><span style="color: red;">&uarr;</span> ArrowUp to Control</p>
+  </div>
+
+  <!-- Score -->
+  <div class="score">
+    <span class="score_title">Score : </span>
+    <span class="score_val">0</span>
+  </div>
+
+  <!-- Difficulty selector -->
+  <div id="difficulty-control"
+       style="position:fixed; right:18px; top:10px; z-index:99999; background: rgba(0,0,0,0.45); padding:6px 8px; border-radius:6px; color:#fff; font-family:inherit;">
+    <label style="font-size:14px; line-height:1; display:flex; gap:8px; align-items:center;">
+      <span style="font-size:13px;">Difficulty</span>
+      <select id="difficulty_select" style="padding:4px 6px; border-radius:6px; border:none; font-size:13px;">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- OPTIONAL: Add this element if you want to manage the overlay from HTML.
+       If present, script will reuse it. If you don't add it, JS will create one. -->
+  <div id="score_flash_overlay" aria-hidden="true"></div>
+</body>
+</html>

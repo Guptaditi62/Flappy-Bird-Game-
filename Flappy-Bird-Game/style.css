@@ -1,0 +1,181 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+/* Background setup */
+.background {
+	height: 100vh;
+	width: 100vw;
+	background: url('images/background-img.png') no-repeat center center fixed;
+	background-size: cover;
+}
+
+/* Bird position and size */
+.bird {
+	height: 100px;
+	width: 130px;
+	position: fixed;
+	top: 40vh;
+	left: 15vw;
+	z-index: 100;
+}
+
+/* Pipe visuals */
+.pipe_sprite {
+	position: fixed;
+	top: 40vh;
+	left: 100vw;
+	height: 70vh;
+	width: 6vw;
+	background: radial-gradient(circle at center, #8fff8f 40%, #2e7d32 100%);
+	border: 4px solid #1b5e20;
+	border-radius: 8px;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+	transition: background 0.5s, border-color 0.5s;
+}
+
+/* Main message (like “Get Ready” or “Game Over”) */
+.message {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-size: 3.5em;
+	font-weight: 600;
+	color: #222;
+	z-index: 200;
+}
+
+/* Add card-like box for better readability */
+.messageStyle {
+	background: rgba(255, 255, 255, 0.85);
+	padding: 25px 40px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+	border-radius: 12px;
+	backdrop-filter: blur(6px);
+	display: inline-block;
+	text-align: center;
+}
+
+/* Score styling */
+.score {
+	position: fixed;
+	z-index: 10;
+	font-size: 8vh;
+	font-weight: 700;
+	color: #fff;
+	-webkit-text-stroke: 2px #000;
+	top: 10px;
+	left: 20px;
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.score_val {
+	color: #ffcc00;
+	font-weight: 800;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 1080px) {
+	.message {
+		font-size: 2em;
+		top: 45%;
+	}
+
+	.score {
+		font-size: 6vh;
+		top: 5px;
+		left: 10px;
+	}
+
+	.bird {
+		width: 100px;
+		height: 75px;
+	}
+
+	.pipe_sprite {
+		width: 12vw;
+	}
+}
+
+/* Debug video (camera feed) */
+.debug-video {
+	display: none;
+	position: fixed;
+	right: 12px;
+	bottom: 60px;
+	width: 320px;
+	height: 240px;
+	z-index: 99998;
+
+	border: 5px solid #227e37;   /* ⭐ NEW BORDER ADDED */
+	
+	border-radius: 6px;
+	object-fit: cover;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* class toggled by JS to show the video */
+.debug-video.visible {
+	display: block;
+}
+
+/* ---------- Enable Camera button ---------- */
+.enable-cam-btn {
+	position: fixed;
+	right: 12px;
+	bottom: 12px;
+	z-index: 99999;
+	padding: 8px 12px;
+	background: #0b84ff;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	font-size: 14px;
+	cursor: pointer;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+	transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.enable-cam-btn:hover,
+.enable-cam-btn:focus {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.enable-cam-btn:focus {
+	outline: 3px solid rgba(11, 132, 255, 0.18);
+}
+
+/* if you prefer the button less prominent on small screens */
+@media (max-width: 480px) {
+	.enable-cam-btn {
+		right: 8px;
+		bottom: 8px;
+		padding: 6px 10px;
+		font-size: 13px;
+	}
+
+	.debug-video {
+		width: 240px;
+		height: 180px;
+		right: 8px;
+		bottom: 56px;
+	}
+}
+
+/* ---------- Score Flash Overlay ---------- */
+#score_flash_overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(255, 255, 0, 0.55);
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 120ms ease-out;
+	z-index: 9999;
+}
